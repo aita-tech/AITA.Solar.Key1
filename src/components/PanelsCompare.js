@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const panels = [
   {
@@ -51,6 +52,23 @@ const panels = [
 
 const PanelsCompare = () => {
   const [modalPanel, setModalPanel] = useState(null);
+  const navigate = useNavigate();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleOrderClick = () => {
+    navigate('/');
+    // Small delay to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const contactElement = document.getElementById('contact');
+      if (contactElement) {
+        contactElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <section className="py-12 bg-white min-h-screen">
@@ -91,7 +109,10 @@ const PanelsCompare = () => {
                 </ul>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <button className="flex-1 h-14 bg-brand-yellow text-brand-black px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-brand-hover transition">
+                <button 
+                  onClick={handleOrderClick}
+                  className="flex-1 h-14 bg-brand-yellow text-brand-black px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-brand-hover transition"
+                >
                   Замовити
                 </button>
                 <a

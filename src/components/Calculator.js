@@ -196,6 +196,13 @@ const Calculator = () => {
             </div>
           </div>
 
+          {/* Disclaimer about calculations */}
+          <div className="mt-6 sm:mt-8 text-center">
+            <p className="text-sm text-gray-500 italic max-w-2xl mx-auto">
+              *Розрахунки є орієнтовними та базуються на середньостатистичних даних. Для отримання точної інформації залиште заявку або зателефонуйте за вказаним номером.
+            </p>
+          </div>
+
           {/* Mobile-specific CTA */}
           <div className="mt-8 sm:hidden">
             <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-brand border border-green-200">

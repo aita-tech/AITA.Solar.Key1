@@ -73,6 +73,7 @@ const SolarPanels = () => (
               </ul>
             </div>
             <button
+              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
               className="w-full py-3 bg-brand-yellow text-brand-black rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-brand-hover transition"
             >
               Замовити
