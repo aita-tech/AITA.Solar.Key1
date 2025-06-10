@@ -65,21 +65,6 @@ const Hero = () => {
   return (
     <section className="bg-gradient-to-br from-brand-white to-gray-50 py-12 sm:py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Trust Bar */}
-        <div className="text-center mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-4">
-            <div className="bg-green-100 text-green-800 px-3 py-2 rounded-full text-xs sm:text-sm font-medium">
-              ✓ Сертифіковані інженери
-            </div>
-            <div className="bg-blue-100 text-blue-800 px-3 py-2 rounded-full text-xs sm:text-sm font-medium">
-              ✓ Офіційна гарантія 25 років
-            </div>
-            <div className="bg-purple-100 text-purple-800 px-3 py-2 rounded-full text-xs sm:text-sm font-medium">
-              ✓ Повний цикл "під ключ"
-            </div>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="text-center lg:text-left order-1 lg:order-1">

@@ -22,12 +22,21 @@ const Header = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMenuOpen(false); // Close mobile menu if open
+  };
+
   return (
     <header className="bg-brand-white shadow-lg fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center group focus:outline-none">
+          <Link 
+            to="/" 
+            className="flex items-center group focus:outline-none"
+            onClick={scrollToTop}
+          >
             <div className="flex-shrink-0">
               <img 
                 src="/logo.png" 
