@@ -82,7 +82,7 @@ const Hero = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left order-1 lg:order-1">
             <div className="mb-4">
               <span className="bg-brand-yellow text-brand-black px-4 py-2 rounded-brand text-xs sm:text-sm font-semibold">
                 🏆 #1 у сонячній енергетиці України
@@ -169,7 +169,7 @@ const Hero = () => {
           </div>
 
           {/* Project Carousel */}
-          <div className="relative order-1 lg:order-2 flex flex-col items-center w-full">
+          <div className="relative order-2 lg:order-2 flex flex-col items-center w-full">
             {/* Carousel Header and Badges - OUTSIDE image on mobile */}
             <div className="w-full flex flex-col sm:block">
               <div className="flex items-center justify-between w-full mb-2">
