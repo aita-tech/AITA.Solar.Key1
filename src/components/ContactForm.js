@@ -85,10 +85,6 @@ const ContactForm = () => {
     <section id="contact" className="py-12 sm:py-20 bg-brand-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-16">
-          <div className="inline-flex items-center bg-red-100 text-red-800 px-4 py-2 rounded-brand text-sm font-semibold mb-4">
-            <span className="mr-2">🔥</span>
-            Акція: знижка 15% до кінця місяця
-          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-brand-black mb-3 sm:mb-4">
             Розпочніть свій проект зараз
           </h2>
