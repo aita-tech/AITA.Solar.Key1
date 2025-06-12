@@ -220,6 +220,11 @@ const Calculator = () => {
             </div>
           </div>
         </div>
+
+        {/* Section Divider */}
+        <div className="mt-16 sm:mt-20">
+          <div className="section-divider"></div>
+        </div>
       </div>
     </section>
   );

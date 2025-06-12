@@ -115,13 +115,18 @@ const FAQ = () => {
             >
               📝 Задати питання
             </button>
-            <a 
-              href="tel:+380736369500"
+            <button 
+              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
               className="border-2 border-brand-yellow text-brand-black hover:bg-brand-yellow px-6 sm:px-8 py-3 sm:py-4 rounded-brand font-semibold transition-all hover:shadow-brand text-base touch-manipulation"
             >
               📞 Зателефонувати зараз
-            </a>
+            </button>
           </div>
+        </div>
+
+        {/* Section Divider */}
+        <div className="mt-16 sm:mt-20">
+          <div className="section-divider"></div>
         </div>
       </div>
     </section>

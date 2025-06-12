@@ -89,7 +89,7 @@ const Footer = () => {
                 Переваги
               </button>
               <button 
-                onClick={() => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('turnkey-process').scrollIntoView({ behavior: 'smooth' })}
                 className="block text-gray-300 hover:text-brand-yellow transition-colors"
               >
                 Як це працює

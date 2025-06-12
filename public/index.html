@@ -2,6 +2,79 @@
 <html lang="uk">
   <head>
     <meta charset="utf-8" />
+    
+    <!-- Critical LCP Optimizations - Font Preloading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" /></noscript>
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical CSS for LCP optimization */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-display: swap;
+        margin: 0;
+        padding-top: 80px;
+        line-height: 1.5;
+      }
+      
+      /* Critical hero styles for immediate rendering */
+      .hero-critical {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 4rem 1rem;
+        background-color: white;
+        position: relative;
+      }
+      
+      .hero-title-critical {
+        font-size: clamp(1.5rem, 4vw, 3.5rem);
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        max-width: 64rem;
+      }
+      
+      .hero-subtitle-critical {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        color: #374151;
+        margin-bottom: 2rem;
+        max-width: 32rem;
+        line-height: 1.6;
+      }
+      
+      /* Critical button styles */
+      .btn-critical {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        margin-right: 1rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s ease;
+      }
+      
+      .btn-primary-critical {
+        background-color: #eab308;
+        color: white;
+        border: none;
+      }
+      
+      .btn-secondary-critical {
+        background-color: transparent;
+        color: #eab308;
+        border: 2px solid #eab308;
+      }
+    </style>
+    
     <!-- Enhanced Favicon Configuration -->
     <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
@@ -33,6 +106,10 @@
     <meta name="twitter:image" content="%PUBLIC_URL%/logo.png" />
     
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Resource hints for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     
     <title>AITA Solar - Сонячні рішення під ключ для дому та бізнесу</title>
   </head>

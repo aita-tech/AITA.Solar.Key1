@@ -3,93 +3,111 @@ import React from 'react';
 const Benefits = () => {
   const benefits = [
     {
-      icon: "💰",
-      title: "Зекономте до 80% на електроенергії",
-      description: "Сонячна електростанція дозволяє значно скоротити витрати на електроенергію вже з першого дня роботи"
+      icon: (
+        <svg className="w-12 h-12 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+        </svg>
+      ),
+      title: "Економія",
+      description: "Заощаджуйте до 80% на електроенергії з першого дня роботи."
     },
     {
-      icon: "⚡",
-      title: "Незалежність від постачальника",
-      description: "Ваша власна електростанція забезпечує стабільне електропостачання незалежно від тарифів"
+      icon: (
+        <svg className="w-12 h-12 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+        </svg>
+      ),
+      title: "Екологічність",
+      description: "Чиста сонячна енергія без шкоди для навколишнього середовища."
     },
     {
-      icon: "🌿",
-      title: "Екологічно чиста енергія",
-      description: "Зменште свій вуглецевий слід та внесіть вклад у збереження навколишнього середовища"
+      icon: (
+        <svg className="w-12 h-12 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,15.2L16.2,16.2Z"/>
+        </svg>
+      ),
+      title: "Простота",
+      description: "Простий процес встановлення та мінімальне обслуговування."
     },
     {
-      icon: "🏠",
-      title: "Збільшення вартості нерухомості",
-      description: "Будинок з сонячною електростанцією коштує на 10-15% дорожче на ринку нерухомості"
-    },
-    {
-      icon: "🔧",
-      title: "Мінімальне обслуговування",
-      description: "Сонячні панелі практично не потребують обслуговування та мають термін служби понад 25 років"
-    },
-    {
-      icon: "⏰",
-      title: "Швидка окупність",
-      description: "Інвестиції в сонячну енергетику окупаються за 4-7 років при поточних тарифах на електроенергію"
+      icon: (
+        <svg className="w-12 h-12 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+        </svg>
+      ),
+      title: "Надійність",
+      description: "25+ років гарантованої роботи з мінімальними витратами."
     }
   ];
 
   return (
-    <section id="benefits" className="py-12 sm:py-16 lg:py-20 bg-brand-white">
+    <section id="benefits" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-brand-black mb-3 sm:mb-4">
-            ✨ Чому варто обрати сонячну енергію?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
+          <div className="inline-flex items-center bg-brand-yellow text-brand-black px-4 sm:px-6 py-2 rounded-brand text-sm font-semibold mb-4 sm:mb-6">
+            <span className="mr-2">✨</span>
+            Чому варто обрати сонячну енергію?
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4 sm:mb-6 px-2">
             Перехід на сонячну енергію — це розумна інвестиція у ваше майбутнє
-          </p>
+          </h2>
         </div>
 
-        {/* Mobile-First Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        {/* Benefits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-gray-50 p-5 sm:p-6 lg:p-8 rounded-brand hover:shadow-brand transition-all duration-300 hover:-translate-y-1 group touch-manipulation"
+              className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
             >
-              <div className="text-center">
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+              {/* Icon */}
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-brand-yellow group-hover:bg-opacity-10 transition-all duration-300">
                   {benefit.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-brand-black mb-2 sm:mb-3 leading-tight">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                  {benefit.description}
-                </p>
               </div>
+
+              {/* Content */}
+              <h3 className="text-lg sm:text-xl font-bold text-brand-black mb-3 text-center leading-tight">
+                {benefit.title}
+              </h3>
+              <p className="text-gray-600 text-center leading-relaxed text-sm">
+                {benefit.description}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Mobile-Optimized CTA Section */}
-        <div className="mt-12 sm:mt-16 lg:mt-20 text-center bg-gradient-to-r from-brand-yellow to-amber-300 p-6 sm:p-8 rounded-brand shadow-brand">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-black mb-3 sm:mb-4">
-            🚀 Готові перейти на сонячну енергію?
-          </h3>
-          <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            Отримайте безкоштовний розрахунок вартості та терміну окупності сонячної електростанції для вашого об'єкта
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-            <button 
-              onClick={() => document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' })}
-              className="bg-brand-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-brand font-semibold transition-all hover:shadow-lg text-base touch-manipulation"
-            >
-              🔢 Розрахувати вартість
-            </button>
-            <button 
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="bg-brand-white hover:bg-gray-100 text-brand-black px-6 sm:px-8 py-3 sm:py-4 rounded-brand font-semibold transition-all hover:shadow-lg border-2 border-brand-black text-base touch-manipulation"
-            >
-              💬 Безкоштовна консультація
-            </button>
+        {/* CTA Section */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className="bg-gradient-to-r from-brand-yellow to-yellow-400 p-6 sm:p-8 rounded-2xl text-brand-black">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+              Готові приєднатися до сонячної спільноти?
+            </h3>
+            <p className="text-base sm:text-lg mb-6 opacity-90 px-2 sm:px-0">
+              Розрахуйте вартість сонячної електростанції для вашого об'єкта
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button 
+                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-brand-black text-white px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:bg-gray-800 transition-all text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 touch-manipulation w-full sm:w-auto"
+              >
+                📞 Безкоштовна консультація
+              </button>
+              <button 
+                onClick={() => document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-brand-black px-6 sm:px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 border-2 border-gray-200 touch-manipulation w-full sm:w-auto"
+              >
+                🧮 Розрахувати вартість
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Section Divider */}
+        <div className="mt-16 sm:mt-20">
+          <div className="section-divider"></div>
         </div>
       </div>
     </section>
