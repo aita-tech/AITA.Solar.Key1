@@ -38,7 +38,15 @@ const ContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-12 sm:py-20 bg-gradient-to-br from-green-50 to-green-100">
+      <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
+        {/* Background pattern (same as Hero) */}
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] bg-[size:40px_40px]"></div>
+            </div>
+          </div>
+        </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center bg-white p-8 sm:p-12 rounded-brand shadow-xl border border-green-200">
             <div className="w-16 sm:w-20 h-16 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
@@ -77,12 +85,22 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
+        {/* Bottom gradient for smooth transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-yellow-50/40 to-yellow-100/80 pointer-events-none z-20"></div>
       </section>
     );
   }
 
   return (
-    <section id="contact" className="py-12 sm:py-20 bg-brand-white">
+    <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
+      {/* Background pattern (same as Hero) */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] bg-[size:40px_40px]"></div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-brand-black mb-3 sm:mb-4">
@@ -270,6 +288,8 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-yellow-50/40 to-yellow-100/80 pointer-events-none z-20"></div>
     </section>
   );
 };

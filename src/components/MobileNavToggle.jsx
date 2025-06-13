@@ -160,6 +160,15 @@ export default function MobileNavToggle() {
             </motion.button>
             
             <motion.button
+              onClick={() => handleNavigationClick('problem-solution')}
+              className="text-left text-lg font-medium text-gray-800 hover:text-yellow-600 transition-colors p-3 rounded-lg hover:bg-yellow-50"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Проблема та рішення
+            </motion.button>
+            
+            <motion.button
               onClick={() => handleNavigationClick('faq')}
               className="text-left text-lg font-medium text-gray-800 hover:text-yellow-600 transition-colors p-3 rounded-lg hover:bg-yellow-50"
               whileHover={{ scale: 1.02 }}

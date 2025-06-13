@@ -47,7 +47,15 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <section id="faq" className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+      {/* Background pattern (same as Hero) */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] bg-[size:40px_40px]"></div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-brand-black mb-3 sm:mb-4">
@@ -123,12 +131,9 @@ const FAQ = () => {
             </button>
           </div>
         </div>
-
-        {/* Section Divider */}
-        <div className="mt-16 sm:mt-20">
-          <div className="section-divider"></div>
-        </div>
       </div>
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-yellow-50/40 to-yellow-100/80 pointer-events-none z-20"></div>
     </section>
   );
 };
