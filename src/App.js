@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import ProblemSolution from './components/ProblemSolution';
 import PerformanceMonitor from './components/PerformanceMonitor';
+import BackgroundPattern from './components/BackgroundPattern';
 
 // Enhanced UI components
 import StickyCTA from './components/StickyCTA';
@@ -44,53 +46,55 @@ function ScrollToTop() {
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App relative min-h-screen">
+        <BackgroundPattern />
         <PerformanceMonitor />
         <ScrollToTop />
         <Header />
-        <main className="bg-white">
+        <main className="relative z-10">
           <Routes>
             <Route path="/" element={
               <>
-                <div className="section-white">
+                <div>
                   <Hero />
+                  <ProblemSolution />
                 </div>
-                <div className="section-gray-light">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <Benefits />
                   </Suspense>
                 </div>
-                <div className="section-white">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <HowItWorks />
                   </Suspense>
                 </div>
-                <div className="section-gray-light">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <TurnkeyProcess />
                   </Suspense>
                 </div>
-                <div className="section-white">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <Calculator />
                   </Suspense>
                 </div>
-                <div className="section-gray-light">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <SolarPanels />
                   </Suspense>
                 </div>
-                <div className="section-white">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <Testimonials />
                   </Suspense>
                 </div>
-                <div className="section-gray-light">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <FAQ />
                   </Suspense>
                 </div>
-                <div className="section-white">
+                <div>
                   <Suspense fallback={<LoadingSpinner />}>
                     <ContactForm />
                   </Suspense>
@@ -98,14 +102,14 @@ function App() {
               </>
             } />
             <Route path="/panel/:panelId" element={
-              <div className="section-white min-h-screen">
+              <div className="min-h-screen">
                 <Suspense fallback={<LoadingSpinner />}>
                   <PanelDetails />
                 </Suspense>
               </div>
             } />
             <Route path="/panels" element={
-              <div className="section-white min-h-screen">
+              <div className="min-h-screen">
                 <Suspense fallback={<LoadingSpinner />}>
                   <PanelsCompare />
                 </Suspense>

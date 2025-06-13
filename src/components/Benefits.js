@@ -41,8 +41,8 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="benefits" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-flex items-center bg-brand-yellow text-brand-black px-4 sm:px-6 py-2 rounded-brand text-sm font-semibold mb-4 sm:mb-6">
@@ -104,12 +104,10 @@ const Benefits = () => {
             </div>
           </div>
         </div>
-
-        {/* Section Divider */}
-        <div className="mt-16 sm:mt-20">
-          <div className="section-divider"></div>
-        </div>
       </div>
+
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-white/80 pointer-events-none z-20"></div>
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -33,6 +33,14 @@ const Testimonials = () => {
     }
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
@@ -46,19 +54,21 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-16 sm:py-20 lg:py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4">
-            💬 Що кажуть наші клієнти
+    <section id="testimonials" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-flex items-center bg-brand-yellow text-brand-black px-4 sm:px-6 py-2 rounded-brand text-sm font-semibold mb-4 sm:mb-6">
+            <span className="mr-2">💬</span>
+            Відгуки наших клієнтів
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4 sm:mb-6 px-2">
+            Що кажуть про нас
+            <span className="text-brand-yellow"> клієнти</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Довіра наших клієнтів — найкраща рекомендація нашої роботи
-          </p>
         </div>
 
-        {/* Desktop Layout - Horizontal */}
+        {/* Desktop Testimonials */}
         <div className="hidden lg:block">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.slice(0, 2).map((testimonial) => (
@@ -78,35 +88,16 @@ const Testimonials = () => {
 
                 {/* Customer Info */}
                 <div className="flex items-center">
-                  <img 
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-14 h-14 rounded-full object-cover mr-4 ring-4 ring-brand-yellow/20"
-                  />
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-brand-black">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-gray-600 text-sm">
-                      {testimonial.location}
-                    </p>
-                    
-                    {/* Rating Stars */}
-                    <div className="flex items-center mt-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                      ))}
-                    </div>
+                  <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                    <img 
+                      src={testimonial.avatar} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-
-                  {/* Savings Badge */}
-                  <div className="text-center">
-                    <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                      -{testimonial.savings}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">економія</p>
+                  <div>
+                    <h4 className="font-semibold text-brand-black">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.location}</p>
                   </div>
                 </div>
               </div>
@@ -114,7 +105,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Mobile Layout - Carousel */}
+        {/* Mobile Testimonials */}
         <div className="lg:hidden">
           <div className="relative">
             {/* Current Testimonial */}
@@ -131,109 +122,39 @@ const Testimonials = () => {
 
               {/* Customer Info */}
               <div className="flex items-center">
-                <img 
-                  src={testimonials[currentTestimonial].avatar}
-                  alt={testimonials[currentTestimonial].name}
-                  className="w-12 h-12 rounded-full object-cover mr-4 ring-4 ring-brand-yellow/20"
-                />
-                <div className="flex-1">
-                  <h4 className="text-base font-bold text-brand-black">
-                    {testimonials[currentTestimonial].name}
-                  </h4>
-                  <p className="text-gray-600 text-sm">
-                    {testimonials[currentTestimonial].location}
-                  </p>
-                  
-                  {/* Rating Stars */}
-                  <div className="flex items-center mt-1">
-                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-brand-yellow" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                    ))}
-                  </div>
+                <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                  <img 
+                    src={testimonials[currentTestimonial].avatar} 
+                    alt={testimonials[currentTestimonial].name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-
-                {/* Savings Badge */}
-                <div className="text-center">
-                  <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">
-                    -{testimonials[currentTestimonial].savings}
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1">економія</p>
+                <div>
+                  <h4 className="font-semibold text-brand-black">{testimonials[currentTestimonial].name}</h4>
+                  <p className="text-sm text-gray-600">{testimonials[currentTestimonial].location}</p>
                 </div>
               </div>
             </div>
 
-            {/* Navigation Arrows */}
-            <button 
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-brand-yellow transition-all touch-manipulation"
-              aria-label="Попередній відгук"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button 
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-brand-yellow transition-all touch-manipulation"
-              aria-label="Наступний відгук"
-            >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all touch-manipulation ${
-                  index === currentTestimonial 
-                    ? 'bg-brand-yellow scale-125' 
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Перейти до відгуку ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-brand-yellow rounded-2xl p-8 sm:p-12">
-            <h3 className="text-2xl sm:text-3xl font-bold text-brand-black mb-4">
-              🌟 Станьте частиною нашої сонячної спільноти!
-            </h3>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto">
-              Приєднуйтесь до тисяч задоволених клієнтів, які вже економлять на електроенергії
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-brand-black hover:bg-gray-800 text-white px-8 py-4 rounded-lg font-semibold transition-all hover:shadow-lg text-base touch-manipulation"
-              >
-                💬 Отримати консультацію
-              </button>
-              <button 
-                onClick={() => document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white hover:bg-gray-100 text-brand-black px-8 py-4 rounded-lg font-semibold transition-all hover:shadow-lg border-2 border-brand-black text-base touch-manipulation"
-              >
-                📊 Розрахувати вартість
-              </button>
+            {/* Navigation Dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentTestimonial ? 'bg-brand-yellow w-4' : 'bg-gray-300'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
-
-        {/* Section Divider */}
-        <div className="mt-16 sm:mt-20">
-          <div className="section-divider"></div>
-        </div>
       </div>
+
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-white/40 to-white/0 pointer-events-none z-20"></div>
     </section>
   );
 };

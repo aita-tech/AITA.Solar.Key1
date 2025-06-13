@@ -51,6 +51,7 @@ const Header = () => {
 
   const menuItems = [
     { label: 'Переваги', id: 'benefits' },
+    { label: 'Проблема та рішення', id: 'problem-solution' },
     { label: 'Як це працює', id: 'turnkey-process' },
     { label: 'Калькулятор', id: 'calculator' },
     { label: 'Сонячні панелі', id: 'solar-panels' },

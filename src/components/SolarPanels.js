@@ -35,7 +35,15 @@ const panels = [
 ];
 
 const SolarPanels = () => (
-  <section id="solar-panels" className="py-12 bg-white">
+  <section id="solar-panels" className="relative py-12 overflow-hidden">
+    {/* Background pattern (same as Hero) */}
+    <div className="absolute inset-0 pointer-events-none -z-10">
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] bg-[size:40px_40px]"></div>
+        </div>
+      </div>
+    </div>
     <div className="max-w-5xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {panels.map((panel, idx) => (
@@ -81,26 +89,9 @@ const SolarPanels = () => (
           </div>
         ))}
       </div>
-
-      {/* Section Divider with Wave Effect */}
-      <div className="mt-16 sm:mt-20">
-        <div className="section-divider"></div>
-        <div className="wave-separator mt-8">
-          <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              className="wave" 
-              fill="rgba(237, 192, 6, 0.1)" 
-              d="M0,32L40,37.3C80,43,160,53,240,58.7C320,64,400,64,480,58.7C560,53,640,43,720,42.7C800,43,880,53,960,58.7C1040,64,1120,64,1200,58.7C1280,53,1360,43,1400,37.3L1440,32L1440,80L1400,80C1360,80,1280,80,1200,80C1120,80,1040,80,960,80C880,80,800,80,720,80C640,80,560,80,480,80C400,80,320,80,240,80C160,80,80,80,40,80L0,80Z"
-            />
-            <path 
-              className="wave" 
-              fill="rgba(237, 192, 6, 0.05)" 
-              d="M0,48L40,42.7C80,37,160,27,240,32C320,37,400,59,480,64C560,69,640,59,720,53.3C800,48,880,48,960,50.7C1040,53,1120,59,1200,58.7C1280,59,1360,53,1400,50.7L1440,48L1440,80L1400,80C1360,80,1280,80,1200,80C1120,80,1040,80,960,80C880,80,800,80,720,80C640,80,560,80,480,80C400,80,320,80,240,80C160,80,80,80,40,80L0,80Z"
-            />
-          </svg>
-        </div>
-      </div>
     </div>
+    {/* Bottom gradient for smooth transition */}
+    <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-white/40 to-white/0 pointer-events-none z-20"></div>
   </section>
 );
 
