@@ -1,11 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+const heroImages = [
+  {
+    src: '/objct3.webp',
+    alt: 'Сонячні панелі на будинку - AITA Solar',
+    caption: '✨ Якісне встановлення сонячних панелей для вашого дому',
+  },
+  {
+    src: '/hero slogan.webp',
+    alt: 'Слоган AITA Solar',
+    caption: '✨ Ваш шлях до енергонезалежності з AITA Solar',
+  },
+];
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Auto-slide logic
+  useEffect(() => {
+    timeoutRef.current && clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setCurrent((prev) => (prev + 1) % heroImages.length);
+    }, 5000); // 5 seconds
+    return () => clearTimeout(timeoutRef.current);
+  }, [current]);
+
+  const goToPrev = () => {
+    setCurrent((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+  const goToNext = () => {
+    setCurrent((prev) => (prev + 1) % heroImages.length);
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-start justify-center px-4 sm:px-6 py-16 sm:py-20 text-left overflow-hidden">
@@ -42,26 +73,42 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* Hero Image Section */}
+        {/* Hero Image Carousel */}
         <div className="w-full relative">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-              alt="Сонячні панелі на будинку - AITA Solar"
-              className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
+              src={heroImages[current].src}
+              alt={heroImages[current].alt}
+              className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover transition-all duration-700"
               loading="lazy"
             />
-            
-            {/* Image overlay */}
+            {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-            
-            {/* Image caption */}
+            {/* Caption */}
             <div className="absolute bottom-4 left-4 right-4 text-white">
               <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2">
                 <p className="text-sm sm:text-base font-medium">
-                  ✨ Якісне встановлення сонячних панелей для вашого дому
+                  {heroImages[current].caption}
                 </p>
               </div>
+            </div>
+            {/* Carousel Controls */}
+            <button onClick={goToPrev} aria-label="Попереднє" className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 z-10">
+              &#8592;
+            </button>
+            <button onClick={goToNext} aria-label="Наступне" className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 z-10">
+              &#8594;
+            </button>
+            {/* Dots */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+              {heroImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrent(idx)}
+                  className={`w-3 h-3 rounded-full ${current === idx ? 'bg-yellow-400' : 'bg-white/60'} border border-white`}
+                  aria-label={`Перейти до слайду ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>

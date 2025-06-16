@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ProblemSolution = () => {
+  const [activeTab, setActiveTab] = useState('problems');
+
   const problems = [
     {
       icon: (
@@ -62,7 +64,7 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section id="problem-solution" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20 overflow-hidden">
+    <section id="problem-solution" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20 overflow-x-hidden overflow-y-auto min-h-screen">
       {/* Background pattern (same as Hero) */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
@@ -71,54 +73,72 @@ const ProblemSolution = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Problem Section */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4">
-              Основна проблема електропостачання в Україні
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              З якими викликами стикається кожен українець?
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {problems.map((problem, index) => (
-              <div key={index} className="bg-red-50 p-8 rounded-2xl shadow-lg border-l-4 border-red-500">
-                <div className="flex items-center mb-4">
-                  {problem.icon}
-                  <h3 className="text-xl font-bold text-brand-black ml-4">{problem.title}</h3>
-                </div>
-                <p className="text-gray-700 leading-relaxed">{problem.description}</p>
-              </div>
-            ))}
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-0">
+        {/* Tab Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            className={`px-6 py-3 rounded-full font-semibold transition-all text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm
+              ${activeTab === 'problems' ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-yellow-100'}`}
+            onClick={() => setActiveTab('problems')}
+          >
+            Проблеми
+          </button>
+          <button
+            className={`px-6 py-3 rounded-full font-semibold transition-all text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm
+              ${activeTab === 'solutions' ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-yellow-100'}`}
+            onClick={() => setActiveTab('solutions')}
+          >
+            Рішення
+          </button>
         </div>
 
-        {/* Solution Section */}
-        <div>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4">
-              <span className="text-brand-yellow">Рішення є:</span> Сонячні електростанції
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-              Як сонячна енергія вирішує ці проблеми та надає переваги
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {solutions.map((solution, index) => (
-              <div key={index} className="bg-green-50 p-8 rounded-2xl shadow-lg border-l-4 border-green-500">
-                <div className="flex items-center mb-4">
-                  {solution.icon}
-                  <h3 className="text-xl font-bold text-brand-black ml-4">{solution.title}</h3>
+        {/* Tab Panels */}
+        {activeTab === 'problems' && (
+          <div>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4">
+                Основна проблема електропостачання в Україні
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                З якими викликами стикається кожен українець?
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {problems.map((problem, index) => (
+                <div key={index} className="bg-red-50 p-8 rounded-2xl shadow-lg border-l-4 border-red-500">
+                  <div className="flex items-center mb-4">
+                    {problem.icon}
+                    <h3 className="text-xl font-bold text-brand-black ml-4">{problem.title}</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{problem.description}</p>
                 </div>
-                <p className="text-gray-700 leading-relaxed">{solution.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-
+        )}
+        {activeTab === 'solutions' && (
+          <div>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-black mb-4">
+                <span className="text-brand-yellow">Рішення є:</span> Сонячні електростанції
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                Як сонячна енергія вирішує ці проблеми та надає переваги
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {solutions.map((solution, index) => (
+                <div key={index} className="bg-green-50 p-8 rounded-2xl shadow-lg border-l-4 border-green-500">
+                  <div className="flex items-center mb-4">
+                    {solution.icon}
+                    <h3 className="text-xl font-bold text-brand-black ml-4">{solution.title}</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{solution.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       {/* Bottom gradient for smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-white/40 to-white/0 pointer-events-none z-20"></div>

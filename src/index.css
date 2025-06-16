@@ -8,12 +8,28 @@
   html {
     font-family: 'Golos Text', sans-serif;
     scroll-behavior: smooth;
-    font-display: swap; /* Critical for LCP optimization */
+    font-display: swap;
+    height: 100%;
   }
   
   body {
-    padding-top: 80px; /* Account for fixed header */
-    font-display: swap; /* Ensure fallback fonts load immediately */
+    padding-top: 80px;
+    font-display: swap;
+    min-height: 100%;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  #root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .App {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
   /* Smooth scrolling for sections */
@@ -521,4 +537,21 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes slideOutLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
 }

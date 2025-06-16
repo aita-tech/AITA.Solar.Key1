@@ -7,14 +7,25 @@ const panels = [
     title: 'Tiger Neo N-type',
     brand: 'Jinko Solar',
     image: '/Jinko Solar Panels.webp',
-    description: 'Двостороння сонячна панель з технологією N-type, антирефлексійним склом і підвищеною ефективністю. Модель 72HL4-BDV потужністю 575-600 Вт ідеально підходить для побудови домашніх та промислових СЕС.',
+    description: '590 Ват. Дволицевий модуль з подвійним склом.',
     specs: [
-      { label: 'Модель', value: 'JKM575-600N-72HL4-BDV' },
-      { label: 'Потужність', value: '575-600 Вт' },
-      { label: 'Ефективність', value: 'до 23.93%' },
-      { label: 'Розміри', value: '2278 × 1134 × 30 мм' },
-      { label: 'Вага', value: '31.5 кг' },
-      { label: 'Клас захисту', value: 'IP68' },
+      { label: 'Модель', value: 'KM590N-72HL4-BDV' },
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '144（72×2）' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX)', value: '590 Вт' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '44.17 В' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '13.36 А' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '52.90 В' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '14.07 А' },
+      { label: 'ККД МОДУЛЯ', value: '22.84%' },
+      { label: 'РОЗМІРИ', value: '2278 × 1134 × 30 мм' },
+      { label: 'ВАГА', value: '31,0 кг' },
+      { label: 'СКЛО', value: 'Антиблікове покриття 2,0 мм, термозміцнене скло' },
+      { label: 'РАМА', value: 'Анодований алюмінієвий сплав IP68' },
+      { label: 'ВИХІДНИЙ КАБЕЛЬ', value: '4,0 мм²' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40 °C ~ +70 °C' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА СИСТЕМИ', value: '1500 В постійного струму (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '30 А' },
+      { label: 'УМОВА ТЕСТУВАННЯ', value: 'STC' },
     ],
     features: [
       { label: 'N-Type Technology', value: 'Покращена продуктивність при низькому освітленні та менша деградація.' },
@@ -30,14 +41,24 @@ const panels = [
     title: 'HTSAEE X-series',
     brand: 'HT-SAAE',
     image: '/ht saae.webp',
-    description: 'Високоефективна сонячна панель HT72-18X(ND)-F з технологією Half-Cell та двосторонньою генерацією. Надійність та якість, підтверджені космічною галуззю.',
+    description: '705 Ват. Monocrystalline Bifacial.',
     specs: [
-      { label: 'Модель', value: 'HT72-18X(ND)-F' },
-      { label: 'Потужність', value: '585-605 Вт' },
-      { label: 'Ефективність', value: 'до 24.6%' },
-      { label: 'Розміри', value: '2278 × 1134 × 30 мм' },
-      { label: 'Вага', value: '32.5 ±0.5 кг' },
-      { label: 'Клас захисту', value: 'IP68' },
+      { label: 'Модель', value: 'HT66-210(ND)-F 705W' },
+      { label: 'ТИП', value: 'Monocrystalline Bifacial' },
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '132（6×22）' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX WP)', value: '705W' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '48.0V' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '18.41A' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '41.1V' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '17.16A' },
+      { label: 'ККД МОДУЛЯ (%)', value: '22.7%' },
+      { label: 'РОЗМІРИ', value: '2384×1303×35 мм' },
+      { label: 'ВАГА', value: '38.5(±0.5) кг' },
+      { label: 'СКЛО', value: 'Загартоване скло з високим коефіцієнтом пропускання світла' },
+      { label: 'NMOT', value: '43℃(±2℃)' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40℃~+85℃' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА', value: '1500V DC (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '35A' },
     ],
     features: [
       { label: 'TOPCon технологія', value: 'Оптимізована структура для максимальної ефективності.' },
@@ -48,10 +69,41 @@ const panels = [
     ],
     specFile: 'https://drive.google.com/file/d/1kDtTHSwxBG4LdjqwRJWN-3TWL75GFKlv/view',
   },
+  {
+    id: 'jinko-585',
+    title: 'Jinko 585W',
+    brand: 'Jinko Solar',
+    image: '/Jinko Solar Panels.webp',
+    description: '585 Ват. Дволицевий модуль з подвійним склом.',
+    specs: [
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '144（72×2）' },
+      { label: 'РОЗМІРИ', value: '2278×1134×30 мм' },
+      { label: 'ВАГА', value: '31,0 кг' },
+      { label: 'СКЛО', value: 'Антиблікове покриття 2,0 мм, термозміцнене скло, анодований алюмінієвий сплав IP68' },
+      { label: 'ВИХІДНИЙ КАБЕЛЬ', value: '4,0 мм2' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40 °C ~ +70 °C' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА СИСТЕМИ', value: '1500 В постійного струму (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '30 А' },
+      { label: 'УМОВА ТЕСТУВАННЯ', value: 'STC' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX)', value: '585' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '44.02' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '13.29' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '52.70' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '14.01' },
+      { label: 'ККД МОДУЛЯ (%)', value: '22.65' },
+    ],
+    features: [
+      { label: 'Двостороння генерація', value: 'Додаткова генерація за рахунок відбитого світла.' },
+      { label: 'Механічна міцність', value: 'Витримує навантаження до 5400 Па спереду та 2400 Па ззаду.' },
+      { label: 'Гарантія', value: '12 років на продукт, 30 років на потужність.' },
+    ],
+    specFile: '',
+  },
 ];
 
 const PanelsCompare = () => {
   const [modalPanel, setModalPanel] = useState(null);
+  const [openSpecs, setOpenSpecs] = useState({});
   const navigate = useNavigate();
 
   // Scroll to top when component mounts
@@ -68,6 +120,10 @@ const PanelsCompare = () => {
         contactElement.scrollIntoView({ behavior: 'smooth' });
       }
     }, 100);
+  };
+
+  const toggleSpecs = (id) => {
+    setOpenSpecs((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   return (
@@ -88,16 +144,30 @@ const PanelsCompare = () => {
                 </button>
               </div>
               <div className="mb-4 text-lg text-gray-700">{panel.description}</div>
-              <div className="bg-blue-50 rounded-lg p-6 mb-4">
-                <h4 className="font-bold text-lg mb-4">Технічні характеристики:</h4>
-                <ul className="space-y-2">
-                  {panel.specs.map((spec) => (
-                    <li key={spec.label} className="flex justify-between text-gray-800">
-                      <span className="font-semibold">{spec.label}:</span> <span>{spec.value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <button
+                className="mb-4 px-6 py-2 bg-brand-yellow text-brand-black rounded-lg font-semibold text-base hover:bg-yellow-400 transition"
+                onClick={() => toggleSpecs(panel.id)}
+                aria-expanded={!!openSpecs[panel.id]}
+                aria-controls={`specs-${panel.id}`}
+              >
+                Детальніше <span className="text-xs text-gray-600">(Натисніть, щоб дізнатися більше)</span>
+              </button>
+              {openSpecs[panel.id] && (
+                <div id={`specs-${panel.id}`} className="bg-blue-50 rounded-lg p-6 mb-4 animate-fade-in">
+                  <h4 className="font-bold text-lg mb-4">Технічні характеристики:</h4>
+                  <ul className="divide-y divide-blue-100">
+                    {panel.specs.map((spec) => (
+                      <li
+                        key={spec.label}
+                        className="py-2 flex flex-col md:flex-row md:items-center md:justify-between text-gray-800"
+                      >
+                        <span className="font-semibold block md:inline md:w-2/3">{spec.label}:</span>
+                        <span className="block md:inline md:text-right md:w-1/3 mt-1 md:mt-0 break-words">{spec.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="bg-blue-50 rounded-lg p-6 mb-6">
                 <h4 className="font-bold text-lg mb-4">Ключові особливості:</h4>
                 <ul className="list-disc pl-5 space-y-2">

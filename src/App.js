@@ -12,17 +12,17 @@ import StickyCTA from './components/StickyCTA';
 import BackToTop from './components/BackToTop';
 
 // Lazy load heavy components
-const SolarPanels = React.lazy(() => import('./components/SolarPanels'));
 const Benefits = React.lazy(() => import('./components/Benefits'));
 const TurnkeyProcess = React.lazy(() => import('./components/TurnkeyProcess'));
 const HowItWorks = React.lazy(() => import('./components/HowItWorks'));
 const Calculator = React.lazy(() => import('./components/Calculator'));
+const FeaturedPanels = React.lazy(() => import('./components/FeaturedPanels'));
+const PanelsCatalog = React.lazy(() => import('./components/PanelsCatalog'));
 const Testimonials = React.lazy(() => import('./components/Testimonials'));
 const FAQ = React.lazy(() => import('./components/FAQ'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const Footer = React.lazy(() => import('./components/Footer'));
 const PanelDetails = React.lazy(() => import('./components/PanelDetails'));
-const PanelsCompare = React.lazy(() => import('./components/PanelsCompare'));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -46,7 +46,7 @@ function ScrollToTop() {
 function App() {
   return (
     <BrowserRouter>
-      <div className="App relative min-h-screen">
+      <div className="App">
         <BackgroundPattern />
         <PerformanceMonitor />
         <ScrollToTop />
@@ -81,7 +81,7 @@ function App() {
                 </div>
                 <div>
                   <Suspense fallback={<LoadingSpinner />}>
-                    <SolarPanels />
+                    <FeaturedPanels />
                   </Suspense>
                 </div>
                 <div>
@@ -102,16 +102,16 @@ function App() {
               </>
             } />
             <Route path="/panel/:panelId" element={
-              <div className="min-h-screen">
+              <div>
                 <Suspense fallback={<LoadingSpinner />}>
                   <PanelDetails />
                 </Suspense>
               </div>
             } />
             <Route path="/panels" element={
-              <div className="min-h-screen">
+              <div>
                 <Suspense fallback={<LoadingSpinner />}>
-                  <PanelsCompare />
+                  <PanelsCatalog />
                 </Suspense>
               </div>
             } />

@@ -116,12 +116,12 @@ const StickyCTA = () => {
                 
                 <button
                   onClick={scrollToCalculator}
-                  className="w-full border-2 border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-brand-black font-medium py-3 px-4 rounded-lg transition-all text-sm flex items-center justify-center gap-2"
+                  className="w-full bg-brand-black text-white font-medium py-3 px-4 rounded-lg transition-all text-sm flex items-center justify-center gap-2 touch-manipulation hover:bg-gray-800"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM6.5 17.5H9.5C10.3 17.5 11 16.8 11 16V15C11 14.2 10.3 13.5 9.5 13.5H8V12H11V10.5H6.5V17.5ZM8 15H9.5V16H8V15ZM14.5 10.5H13V12H14.5C15.3 12 16 12.7 16 13.5V14.5C16 15.3 15.3 16 14.5 16H13V17.5H17V16H14.5V13.5H17V12H14.5V10.5Z"/>
                   </svg>
-                  Розрахувати вартість
+                  Калькулятор
                 </button>
               </div>
 
@@ -158,7 +158,7 @@ const StickyCTA = () => {
               
               <button
                 onClick={scrollToCalculator}
-                className="flex-1 border-2 border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-brand-black font-medium py-3 px-4 rounded-lg transition-all text-sm flex items-center justify-center gap-2 touch-manipulation"
+                className="flex-1 bg-brand-black text-white font-medium py-3 px-4 rounded-lg transition-all text-sm flex items-center justify-center gap-2 touch-manipulation hover:bg-gray-800"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM6.5 17.5H9.5C10.3 17.5 11 16.8 11 16V15C11 14.2 10.3 13.5 9.5 13.5H8V12H11V10.5H6.5V17.5ZM8 15H9.5V16H8V15ZM14.5 10.5H13V12H14.5C15.3 12 16 12.7 16 13.5V14.5C16 15.3 15.3 16 14.5 16H13V17.5H17V16H14.5V13.5H17V12H14.5V10.5Z"/>

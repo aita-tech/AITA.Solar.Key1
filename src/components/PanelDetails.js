@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Breadcrumbs from './Breadcrumbs';
 
-const panelData = {
+export const panelData = {
   'jinko-solar': {
     title: 'Tiger Neo N-type',
     brand: 'Jinko Solar',
     image: '/Jinko Solar Panels.webp',
-    description: 'Двостороння сонячна панель з технологією N-type, антирефлексійним склом і підвищеною ефективністю. Модель 72HL4-BDV потужністю 575-600 Вт ідеально підходить для побудови домашніх та промислових СЕС.',
+    description: '590 Ват. Дволицевий модуль з подвійним склом.',
     specs: [
-      { label: 'Модель', value: 'JKM575-600N-72HL4-BDV' },
-      { label: 'Потужність', value: '575-600 Вт' },
-      { label: 'Ефективність', value: 'до 23.93%' },
-      { label: 'Розміри', value: '2278 × 1134 × 30 мм' },
-      { label: 'Вага', value: '31.5 кг' },
-      { label: 'Клас захисту', value: 'IP68' },
+      { label: 'Модель', value: 'KM590N-72HL4-BDV' },
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '144（72×2）' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX)', value: '590 Вт' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '44.17 В' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '13.36 А' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '52.90 В' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '14.07 А' },
+      { label: 'ККД МОДУЛЯ', value: '22.84%' },
+      { label: 'РОЗМІРИ', value: '2278 × 1134 × 30 мм' },
+      { label: 'ВАГА', value: '31,0 кг' },
+      { label: 'СКЛО', value: 'Антиблікове покриття 2,0 мм, термозміцнене скло' },
+      { label: 'РАМА', value: 'Анодований алюмінієвий сплав IP68' },
+      { label: 'ВИХІДНИЙ КАБЕЛЬ', value: '4,0 мм²' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40 °C ~ +70 °C' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА СИСТЕМИ', value: '1500 В постійного струму (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '30 А' },
+      { label: 'УМОВА ТЕСТУВАННЯ', value: 'STC' },
     ],
     features: [
       { label: 'N-Type Technology', value: 'Покращена продуктивність при низькому освітленні та менша деградація.' },
@@ -28,14 +40,24 @@ const panelData = {
     title: 'HTSAEE X-series',
     brand: 'HT-SAAE',
     image: '/ht saae.webp',
-    description: 'Високоефективна сонячна панель HT72-18X(ND)-F з технологією Half-Cell та двосторонньою генерацією. Надійність та якість, підтверджені космічною галуззю.',
+    description: '705 Ват. Monocrystalline Bifacial.',
     specs: [
-      { label: 'Модель', value: 'HT72-18X(ND)-F' },
-      { label: 'Потужність', value: '585-605 Вт' },
-      { label: 'Ефективність', value: 'до 24.6%' },
-      { label: 'Розміри', value: '2278 × 1134 × 30 мм' },
-      { label: 'Вага', value: '32.5 ±0.5 кг' },
-      { label: 'Клас захисту', value: 'IP68' },
+      { label: 'Модель', value: 'HT66-210(ND)-F 705W' },
+      { label: 'ТИП', value: 'Monocrystalline Bifacial' },
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '132（6×22）' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX WP)', value: '705W' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '48.0V' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '18.41A' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '41.1V' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '17.16A' },
+      { label: 'ККД МОДУЛЯ (%)', value: '22.7%' },
+      { label: 'РОЗМІРИ', value: '2384×1303×35 мм' },
+      { label: 'ВАГА', value: '38.5(±0.5) кг' },
+      { label: 'СКЛО', value: 'Загартоване скло з високим коефіцієнтом пропускання світла' },
+      { label: 'NMOT', value: '43℃(±2℃)' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40℃~+85℃' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА', value: '1500V DC (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '35A' },
     ],
     features: [
       { label: 'TOPCon технологія', value: 'Оптимізована структура для максимальної ефективності.' },
@@ -45,6 +67,35 @@ const panelData = {
       { label: 'Гарантія', value: '15 років на продукт, 30 років на потужність.' },
     ],
     specFile: 'https://drive.google.com/file/d/1kDtTHSwxBG4LdjqwRJWN-3TWL75GFKlv/view',
+  },
+  'jinko-585': {
+    title: 'Jinko 585W',
+    brand: 'Jinko Solar',
+    image: '/Jinko Solar Panels.webp',
+    description: '585 Ват. Дволицевий модуль з подвійним склом.',
+    specs: [
+      { label: 'КІЛЬКІСТЬ КОМІРОК', value: '144（72×2）' },
+      { label: 'РОЗМІРИ', value: '2278×1134×30 мм' },
+      { label: 'ВАГА', value: '31,0 кг' },
+      { label: 'СКЛО', value: 'Антиблікове покриття 2,0 мм, термозміцнене скло, анодований алюмінієвий сплав IP68' },
+      { label: 'ВИХІДНИЙ КАБЕЛЬ', value: '4,0 мм2' },
+      { label: 'РОБОЧА ТЕМПЕРАТУРА', value: '-40 °C ~ +70 °C' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА СИСТЕМИ', value: '1500 В постійного струму (IEC)' },
+      { label: 'МАКСИМАЛЬНИЙ НОМІНАЛ СЕРІЇ ЗАПОБІЖНИКІВ', value: '30 А' },
+      { label: 'УМОВА ТЕСТУВАННЯ', value: 'STC' },
+      { label: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ (PMAX)', value: '585' },
+      { label: 'МАКСИМАЛЬНА НАПРУГА ЖИВЛЕННЯ (VMP)', value: '44.02' },
+      { label: 'МАКСИМАЛЬНА СИЛА СТРУМУ (IMP)', value: '13.29' },
+      { label: 'НАПРУГА ХОЛОСТОГО ХОДУ (VOC)', value: '52.70' },
+      { label: 'СТРУМ КОРОТКОГО ЗАМИКАННЯ (ISC)', value: '14.01' },
+      { label: 'ККД МОДУЛЯ (%)', value: '22.65' },
+    ],
+    features: [
+      { label: 'Двостороння генерація', value: 'Додаткова генерація за рахунок відбитого світла.' },
+      { label: 'Механічна міцність', value: 'Витримує навантаження до 5400 Па спереду та 2400 Па ззаду.' },
+      { label: 'Гарантія', value: '12 років на продукт, 30 років на потужність.' },
+    ],
+    specFile: '',
   },
 };
 
@@ -62,65 +113,109 @@ const PanelDetails = () => {
     );
   }
 
+  // Breadcrumbs array
+  const crumbs = [
+    { name: 'Головна', path: '/' },
+    { name: 'Каталог', path: '/panels' },
+    { name: panel.title, path: `/panels/${panelId}` },
+  ];
+
   return (
     <section className="py-12 bg-white min-h-screen">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start min-h-[500px]">
-          {/* Info */}
-          <div className="h-full flex flex-col justify-between">
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">{panel.title}</h1>
-            <div className="mb-6 text-lg text-gray-700">{panel.description}</div>
-            <div className="bg-blue-50 rounded-lg p-6 mb-6">
-              <h2 className="font-bold text-lg mb-4">Технічні характеристики:</h2>
-              <ul className="space-y-2">
-                {panel.specs.map((spec) => (
-                  <li key={spec.label} className="flex justify-between text-gray-800">
-                    <span className="font-semibold">{spec.label}:</span> <span>{spec.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-blue-50 rounded-lg p-6 mb-6">
-              <h2 className="font-bold text-lg mb-4">Ключові особливості:</h2>
-              <ul className="list-disc pl-5 space-y-2">
-                {panel.features.map((feature) => (
-                  <li key={feature.label}>
-                    <span className="font-semibold">{feature.label}:</span> {feature.value}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-brand-yellow text-brand-black px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-brand-hover transition">
-                Замовити
-              </button>
-              <a
-                href={panel.specFile}
-                download
-                className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-brand-yellow text-brand-black rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-brand-hover transition-colors"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
-                Завантажити специфікацію
-              </a>
-            </div>
-          </div>
-          {/* Image */}
-          <div className="flex justify-center items-start h-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Left Column - Image */}
+          <div className="lg:sticky lg:top-24">
             <button
-              className="focus:outline-none"
+              className="focus:outline-none w-full"
               onClick={() => setShowModal(true)}
-              style={{ width: '100%' }}
               aria-label="Відкрити фото у великому розмірі"
             >
-              <img src={panel.image} alt={panel.title} className="w-full max-w-md h-full rounded-xl object-contain cursor-zoom-in" />
+              <div className="bg-gray-50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                <img 
+                  src={panel.image} 
+                  alt={panel.title} 
+                  className="w-full h-auto rounded-lg object-contain cursor-zoom-in"
+                />
+              </div>
             </button>
+          </div>
+
+          {/* Right Column - Information */}
+          <div className="space-y-8">
+            {/* Breadcrumbs */}
+            <Breadcrumbs crumbs={crumbs} />
+            {/* Header */}
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">{panel.title}</h1>
+              <p className="text-xl text-gray-600">{panel.description}</p>
+            </div>
+
+            {/* Key Features */}
+            <div className="bg-white rounded-xl border border-gray-200 p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Ключові особливості</h2>
+              <ul className="space-y-4">
+                {panel.features.map((feature) => (
+                  <li key={feature.label} className="flex items-start">
+                    <svg className="h-6 w-6 text-brand-yellow flex-shrink-0 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-semibold text-gray-900">{feature.label}:</span>
+                      <p className="text-gray-600 mt-1">{feature.value}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Technical Specifications */}
+            <div className="bg-white rounded-xl border border-gray-200 p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Технічні характеристики</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {panel.specs.map((spec) => (
+                  <div key={spec.label} className="flex flex-col">
+                    <span className="text-sm font-medium text-gray-500">{spec.label}</span>
+                    <span className="text-base text-gray-900 mt-1">{spec.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Block */}
+            <div className="bg-gray-50 rounded-xl p-6 space-y-4">
+              <button 
+                className="w-full bg-brand-yellow text-brand-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:shadow-lg transition-all duration-200 flex items-center justify-center"
+                onClick={() => window.location.href = '#contact'}
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                Запросити консультацію
+              </button>
+              
+              {panel.specFile && (
+                <a
+                  href={panel.specFile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center px-6 py-4 border-2 border-black bg-black text-brand-yellow rounded-lg font-bold text-lg hover:bg-brand-yellow hover:text-black transition-all duration-200"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                  </svg>
+                  Завантажити специфікацію
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
+
       {/* Modal for large image */}
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={() => setShowModal(false)}
         >
           <img
@@ -130,7 +225,7 @@ const PanelDetails = () => {
             onClick={e => e.stopPropagation()}
           />
           <button
-            className="absolute top-6 right-6 text-white text-3xl font-bold bg-black bg-opacity-40 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-70 transition"
+            className="absolute top-6 right-6 text-white text-3xl font-bold bg-black bg-opacity-40 rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition"
             onClick={() => setShowModal(false)}
             aria-label="Закрити фото"
           >
