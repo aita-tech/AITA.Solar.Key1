@@ -63,72 +63,52 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* Process Timeline - Desktop */}
-        <div className="hidden lg:block relative">
-          <div className="flex justify-between items-start relative">
-            {/* Progress Line */}
-            <div className="absolute top-16 left-0 right-0 h-0.5 bg-gray-200 z-0">
-              <div className="h-full bg-brand-yellow w-full"></div>
-            </div>
-
+        {/* Process Timeline - Alternating Timeline */}
+        <div className="relative hidden md:block">
+          {/* Central vertical line */}
+          <div className="absolute left-1/2 top-0 h-full w-1 bg-brand-yellow/40 -translate-x-1/2 z-0" aria-hidden="true"></div>
+          <div className="relative z-10 flex flex-col gap-16">
             {steps.map((step, index) => (
-              <div 
-                key={step.number}
-                className="relative z-10"
-                style={{ width: `${100 / steps.length}%` }}
-              >
-                {/* Step Circle */}
-                <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <span className="text-brand-black font-bold text-lg">{step.number}</span>
-                </div>
-
-                {/* Step Card */}
-                <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 mx-2">
-                  {/* Icon */}
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 bg-gray-50 rounded-2xl">
-                      {step.icon}
+              <div key={step.number} className="relative flex w-full min-h-[120px]">
+                {/* Card container: left or right */}
+                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 justify-end flex' : 'pl-8 justify-start flex ml-auto'}`}> 
+                  <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 w-full max-w-md">
+                    {/* Icon */}
+                    <div className="flex items-center mb-4">
+                      <div className="p-3 bg-gray-50 rounded-2xl mr-3">{step.icon}</div>
+                      <h3 className="text-lg font-bold text-brand-black leading-tight">{step.title}</h3>
                     </div>
+                    <p className="text-gray-600 leading-relaxed text-sm">{step.description}</p>
                   </div>
-
-                  {/* Content */}
-                  <h3 className="text-lg font-bold text-brand-black mb-3 text-center leading-tight">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed text-sm">
-                    {step.description}
-                  </p>
+                </div>
+                {/* Numbered circle on the line */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                  <div className="w-14 h-14 bg-brand-yellow rounded-full flex items-center justify-center shadow-lg border-4 border-white">
+                    <span className="text-brand-black font-bold text-lg">{step.number}</span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Process Timeline - Mobile */}
-        <div className="lg:hidden space-y-6">
+        {/* Process Timeline - Mobile (single column) */}
+        <div className="md:hidden space-y-6">
           {steps.map((step, index) => (
-            <div key={step.number} className="relative">
-              {/* Connection line for mobile */}
-              {index < steps.length - 1 && (
-                <div className="absolute left-8 top-16 w-0.5 h-16 bg-brand-yellow opacity-30 z-0"></div>
-              )}
-              
-              <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-yellow">
-                <div className="flex items-start">
-                  <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
-                    <span className="text-brand-black font-bold text-lg">{step.number}</span>
+            <div key={step.number} className="relative flex items-start">
+              {/* Central line for mobile */}
+              <div className="absolute left-8 top-0 h-full w-1 bg-brand-yellow/40 z-0" aria-hidden="true"></div>
+              {/* Numbered circle */}
+              <div className="w-14 h-14 bg-brand-yellow rounded-full flex items-center justify-center shadow-lg border-4 border-white z-10 mt-2 ml-0 mr-4">
+                <span className="text-brand-black font-bold text-lg">{step.number}</span>
+              </div>
+              <div className="flex-1">
+                <div className="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-brand-yellow">
+                  <div className="flex items-center mb-3">
+                    <div className="p-2 bg-gray-50 rounded-xl mr-3">{step.icon}</div>
+                    <h3 className="text-lg font-bold text-brand-black">{step.title}</h3>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center mb-3">
-                      <div className="p-2 bg-gray-50 rounded-xl mr-3">
-                        {step.icon}
-                      </div>
-                      <h3 className="text-lg font-bold text-brand-black">{step.title}</h3>
-                    </div>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      {step.description}
-                    </p>
-                  </div>
+                  <p className="text-gray-600 leading-relaxed text-sm">{step.description}</p>
                 </div>
               </div>
             </div>

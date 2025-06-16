@@ -15,12 +15,22 @@
             <div class="logo">
                 <img src="logo.png" alt="AITA Solar Logo">
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="mobile-menu">
+                <div class="mobile-logo">
+                    <img src="logo.png" alt="AITA Solar Logo">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -74,5 +84,25 @@
             <p>&copy; 2025 AITA Solar. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html> 

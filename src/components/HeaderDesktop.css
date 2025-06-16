@@ -1,0 +1,14 @@
+@media (min-width: 769px) {
+  .aita-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .aita-header-right .aita-header-phone,
+  .aita-header-right .aita-header-telegram,
+  .aita-header-right .aita-header-cta {
+    white-space: nowrap;
+    min-width: 0;
+  }
+} 
