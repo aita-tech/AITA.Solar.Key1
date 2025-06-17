@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import ProblemSolution from './components/ProblemSolution';
 import PerformanceMonitor from './components/PerformanceMonitor';
 import BackgroundPattern from './components/BackgroundPattern';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 // Enhanced UI components
 import StickyCTA from './components/StickyCTA';
@@ -51,6 +52,7 @@ function App() {
         <BackgroundPattern />
         <PerformanceMonitor />
         <ScrollToTop />
+        <AnalyticsTracker />
         <Header />
         <main className="relative z-10">
           <Routes>
