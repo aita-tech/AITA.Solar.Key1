@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const ProblemSolution = () => {
   const [activeTab, setActiveTab] = useState('problems');
+  const sectionRef = useRef(null);
+
+  const handleTabSwitch = (tab) => {
+    setActiveTab(tab);
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const problems = [
     {
@@ -64,7 +70,7 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section id="problem-solution" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20 overflow-x-hidden overflow-y-auto min-h-screen">
+    <section ref={sectionRef} id="problem-solution" className="relative py-12 sm:py-16 lg:py-20 scroll-mt-20 overflow-x-hidden overflow-y-auto min-h-screen">
       {/* Background pattern (same as Hero) */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
@@ -79,14 +85,14 @@ const ProblemSolution = () => {
           <button
             className={`px-6 py-3 rounded-full font-semibold transition-all text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm
               ${activeTab === 'problems' ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-yellow-100'}`}
-            onClick={() => setActiveTab('problems')}
+            onClick={() => handleTabSwitch('problems')}
           >
             Проблеми
           </button>
           <button
             className={`px-6 py-3 rounded-full font-semibold transition-all text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm
               ${activeTab === 'solutions' ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-yellow-100'}`}
-            onClick={() => setActiveTab('solutions')}
+            onClick={() => handleTabSwitch('solutions')}
           >
             Рішення
           </button>
@@ -114,6 +120,14 @@ const ProblemSolution = () => {
                 </div>
               ))}
             </div>
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => handleTabSwitch('solutions')}
+                className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg bg-yellow-400 text-white hover:bg-yellow-500 transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm"
+              >
+                Переглянути рішення →
+              </button>
+            </div>
           </div>
         )}
         {activeTab === 'solutions' && (
@@ -136,6 +150,14 @@ const ProblemSolution = () => {
                   <p className="text-gray-700 leading-relaxed">{solution.description}</p>
                 </div>
               ))}
+            </div>
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => handleTabSwitch('problems')}
+                className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-base md:text-lg bg-yellow-400 text-white hover:bg-yellow-500 transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow shadow-sm"
+              >
+                ← Повернутись до проблем
+              </button>
             </div>
           </div>
         )}

@@ -83,10 +83,10 @@ const Benefits = () => {
         <div className="mt-12 sm:mt-16 text-center">
           <div className="bg-gradient-to-r from-brand-yellow to-yellow-400 p-6 sm:p-8 rounded-2xl text-brand-black">
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-              Готові приєднатися до сонячної спільноти?
+              Готові до енергетичної незалежності?
             </h3>
             <p className="text-base sm:text-lg mb-6 opacity-90 px-2 sm:px-0">
-              Розрахуйте вартість сонячної електростанції для вашого об'єкта
+              Забезпечте стабільне світло та тепло у вашому домі, незалежно від зовнішніх обставин
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button 

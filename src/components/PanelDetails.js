@@ -95,7 +95,7 @@ export const panelData = {
       { label: 'Механічна міцність', value: 'Витримує навантаження до 5400 Па спереду та 2400 Па ззаду.' },
       { label: 'Гарантія', value: '12 років на продукт, 30 років на потужність.' },
     ],
-    specFile: '',
+    specFile: 'https://drive.google.com/file/d/1oAIphgIqpu-hP8_sINgjti2cRxBtIapt/view',
   },
 };
 
@@ -123,6 +123,11 @@ const PanelDetails = () => {
   return (
     <section className="py-12 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumbs */}
+        <div className="mb-6">
+          <Breadcrumbs crumbs={crumbs} />
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Column - Image */}
           <div className="lg:sticky lg:top-24">
@@ -143,8 +148,6 @@ const PanelDetails = () => {
 
           {/* Right Column - Information */}
           <div className="space-y-8">
-            {/* Breadcrumbs */}
-            <Breadcrumbs crumbs={crumbs} />
             {/* Header */}
             <div>
               <h1 className="text-4xl font-bold text-gray-900 mb-2">{panel.title}</h1>

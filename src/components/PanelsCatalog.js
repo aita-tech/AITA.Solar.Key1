@@ -2,10 +2,9 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PanelFilters from './PanelFilters';
 import { panelData } from './PanelDetails';
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import Breadcrumbs from './Breadcrumbs';
 
-const PanelSummaryCard = ({ panel, id, onImageClick }) => {
+const PanelSummaryCard = ({ panel, id }) => {
   // Find the power spec from the specs array
   const powerSpec = panel.specs.find(spec => 
     spec.label.includes('ПОТУЖНІСТЬ') || 
@@ -13,46 +12,57 @@ const PanelSummaryCard = ({ panel, id, onImageClick }) => {
   );
 
   return (
-    <div className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200">
-      <div className="aspect-w-16 aspect-h-9 bg-gray-50">
-        <img
-          src={panel.image}
-          alt={panel.title}
-          className="w-full h-48 object-contain p-4 cursor-pointer transition-opacity duration-300 hover:opacity-80"
-          onClick={(e) => {
-            e.preventDefault();
-            onImageClick(panel.image);
-          }}
-        />
-      </div>
-      
-      <Link to={`/panel/${id}`} className="block p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-yellow transition-colors">
-          {panel.title}
-        </h3>
+    <Link to={`/panel/${id}`} className="block group">
+      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div className="aspect-w-16 aspect-h-9 bg-gray-50">
+          <img
+            src={panel.image}
+            alt={panel.title}
+            className="w-full h-48 object-contain p-4"
+          />
+        </div>
         
-        <p className="text-gray-600 mb-4 line-clamp-2">
-          {panel.description}
-        </p>
-        
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            {powerSpec && (
+        <div className="p-6">
+          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-yellow transition-colors">
+            {panel.title}
+          </h3>
+          
+          <p className="text-gray-600 mb-4 line-clamp-2">
+            {panel.description}
+          </p>
+          
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              {powerSpec && (
+                <div className="text-sm text-gray-500">
+                  Потужність: <span className="font-semibold text-gray-900">{powerSpec.value}</span>
+                </div>
+              )}
               <div className="text-sm text-gray-500">
-                Потужність: <span className="font-semibold text-gray-900">{powerSpec.value}</span>
+                Бренд: <span className="font-semibold text-gray-900">{panel.brand}</span>
               </div>
-            )}
-            <div className="text-sm text-gray-500">
-              Бренд: <span className="font-semibold text-gray-900">{panel.brand}</span>
+            </div>
+            
+            <div className="text-brand-yellow font-semibold group-hover:underline flex items-center">
+              Детальніше
+              <svg 
+                className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="2" 
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </div>
           </div>
-          
-          <div className="text-brand-yellow font-semibold">
-            Детальніше →
-          </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
@@ -60,8 +70,12 @@ const PanelsCatalog = () => {
   // State for filters and sorting
   const [filters, setFilters] = useState({ brand: 'all', power: 'all' });
   const [sortBy, setSortBy] = useState('default');
-  const [isLightboxOpen, setLightboxOpen] = useState(false);
-  const [activeImage, setActiveImage] = useState('');
+
+  // Breadcrumbs array
+  const crumbs = [
+    { name: 'Головна', path: '/' },
+    { name: 'Сонячні панелі', path: '/panels' },
+  ];
 
   // Extract unique brands from panel data
   const brands = useMemo(() => {
@@ -142,18 +156,14 @@ const PanelsCatalog = () => {
     };
   }, []);
 
-  const handleImageClick = (imageUrl) => {
-    setActiveImage(imageUrl);
-    setLightboxOpen(true);
-  };
-
-  const handleLightboxClose = () => {
-    setLightboxOpen(false);
-  };
-
   return (
     <div className="bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumbs */}
+        <div className="mb-6">
+          <Breadcrumbs crumbs={crumbs} />
+        </div>
+
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Сонячні панелі</h1>
@@ -184,7 +194,6 @@ const PanelsCatalog = () => {
               key={id}
               id={id}
               panel={panel}
-              onImageClick={handleImageClick}
             />
           ))}
         </div>
@@ -200,18 +209,6 @@ const PanelsCatalog = () => {
             </p>
           </div>
         )}
-
-        {/* Lightbox */}
-        <Lightbox
-          open={isLightboxOpen}
-          close={handleLightboxClose}
-          slides={[{ src: activeImage }]}
-          carousel={{ finite: true }}
-          controller={{ closeOnBackdropClick: true }}
-          animation={{ fade: 300 }}
-          noScroll={{ disabled: true }}
-          styles={{ container: { backgroundColor: "rgba(0, 0, 0, 0.9)" } }}
-        />
       </div>
     </div>
   );
