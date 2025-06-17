@@ -156,7 +156,7 @@ export default function MobileNavToggle() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Порівняння панелей
+              Каталог обладнання
             </motion.button>
             
             <motion.button
