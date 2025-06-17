@@ -23,6 +23,7 @@ const FAQ = React.lazy(() => import('./components/FAQ'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const Footer = React.lazy(() => import('./components/Footer'));
 const PanelDetails = React.lazy(() => import('./components/PanelDetails'));
+const ThankYouPage = React.lazy(() => import('./components/ThankYouPage'));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -112,6 +113,13 @@ function App() {
               <div>
                 <Suspense fallback={<LoadingSpinner />}>
                   <PanelsCatalog />
+                </Suspense>
+              </div>
+            } />
+            <Route path="/thank-you" element={
+              <div>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <ThankYouPage />
                 </Suspense>
               </div>
             } />

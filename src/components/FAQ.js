@@ -123,12 +123,12 @@ const FAQ = () => {
             >
               📝 Задати питання
             </button>
-            <button 
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-brand-yellow text-brand-black hover:bg-brand-yellow px-6 sm:px-8 py-3 sm:py-4 rounded-brand font-semibold transition-all hover:shadow-brand text-base touch-manipulation"
+            <a 
+              href="tel:+380736369500"
+              className="border-2 border-brand-yellow text-brand-black hover:bg-brand-yellow px-6 sm:px-8 py-3 sm:py-4 rounded-brand font-semibold transition-all hover:shadow-brand text-base touch-manipulation inline-flex items-center justify-center"
             >
               📞 Зателефонувати зараз
-            </button>
+            </a>
           </div>
         </div>
       </div>

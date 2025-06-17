@@ -1,95 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from '@formspree/react';
+import { useNavigate } from 'react-router-dom';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    description: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, handleSubmit] = useForm("mrbklgvj");
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  // Debug logs for form state
+  React.useEffect(() => {
+    console.log('Form state:', {
+      submitting: state.submitting,
+      succeeded: state.succeeded,
+      errors: state.errors
     });
-  };
+  }, [state]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setIsLoading(false);
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: '',
-          phone: '',
-          description: ''
-        });
-      }, 5000);
-    }, 1000);
-  };
-
-  if (isSubmitted) {
-    return (
-      <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
-        {/* Background pattern (same as Hero) */}
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_0)] bg-[size:40px_40px]"></div>
-            </div>
-          </div>
-        </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center bg-white p-8 sm:p-12 rounded-brand shadow-xl border border-green-200">
-            <div className="w-16 sm:w-20 h-16 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <svg className="w-8 sm:w-10 h-8 sm:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-green-800 mb-3 sm:mb-4">
-              🎉 Заявку отримано!
-            </h3>
-            <p className="text-green-700 mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed">
-              Дякуємо за довіру! Наш експерт зв'яжеться з вами <strong>протягом 15 хвилин</strong> 
-              для уточнення деталей та призначення безкоштовної консультації.
-            </p>
-            
-            <div className="bg-green-50 p-4 sm:p-6 rounded-brand mb-4 sm:mb-6">
-              <h4 className="font-semibold text-green-800 mb-3 text-sm sm:text-base">Що відбуватиметься далі:</h4>
-              <div className="space-y-3 text-sm text-green-700">
-                <div className="flex items-center">
-                  <span className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center mr-3 text-xs flex-shrink-0">1</span>
-                  <span>Онлайн консультація з експертом</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center mr-3 text-xs flex-shrink-0">2</span>
-                  <span>Технічна оцінка та планування</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="w-6 h-6 bg-green-200 rounded-full flex items-center justify-center mr-3 text-xs flex-shrink-0">3</span>
-                  <span>Індивідуальний розрахунок та пропозиція</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-xs sm:text-sm text-green-600">
-              Форма автоматично очиститься через кілька секунд...
-            </div>
-          </div>
-        </div>
-        {/* Bottom gradient for smooth transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-yellow-50/40 to-yellow-100/80 pointer-events-none z-20"></div>
-      </section>
-    );
-  }
+  React.useEffect(() => {
+    if (state.succeeded) {
+      console.log('Form submission succeeded, navigating to thank you page');
+      navigate('/thank-you');
+    }
+  }, [state.succeeded, navigate]);
 
   return (
     <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
@@ -113,64 +44,88 @@ const ContactForm = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
-          {/* Enhanced Contact Info - Mobile First */}
-          <div className="bg-gradient-to-br from-brand-yellow to-yellow-400 p-6 sm:p-8 rounded-brand text-brand-black order-2 lg:order-1">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">⚡ Переваги роботи з нами</h3>
+          {/* New Advantages Grid Section */}
+          <div className="order-2 lg:order-1 lg:sticky lg:top-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-black mb-6 sm:mb-8">
+              Переваги роботи з нами
+            </h2>
             
-            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-black bg-opacity-10 rounded-brand flex items-center justify-center mr-4">
-                  <span className="text-xl sm:text-2xl">🚀</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Quick Start Card */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="w-12 h-12 bg-brand-yellow bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1 text-sm sm:text-base">Швидкий запуск</h4>
-                  <p className="opacity-90 text-xs sm:text-sm">Від заявки до генерації енергії за 14 днів</p>
-                </div>
+                <h3 className="font-semibold text-lg mb-2">Швидкий запуск</h3>
+                <p className="text-gray-600 text-sm">Від заявки до генерації енергії за 14 днів</p>
               </div>
 
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-black bg-opacity-10 rounded-brand flex items-center justify-center mr-4">
-                  <span className="text-xl sm:text-2xl">💰</span>
+              {/* Savings Card */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="w-12 h-12 bg-brand-yellow bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1 text-sm sm:text-base">Економія до 90%</h4>
-                  <p className="opacity-90 text-xs sm:text-sm">На рахунках за електроенергію з першого дня</p>
-                </div>
+                <h3 className="font-semibold text-lg mb-2">Економія до 90%</h3>
+                <p className="text-gray-600 text-sm">На рахунках за електроенергію з першого дня</p>
               </div>
 
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-black bg-opacity-10 rounded-brand flex items-center justify-center mr-4">
-                  <span className="text-xl sm:text-2xl">🛡️</span>
+              {/* Warranty Card */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="w-12 h-12 bg-brand-yellow bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1 text-sm sm:text-base">Повна гарантія</h4>
-                  <p className="opacity-90 text-xs sm:text-sm">25 років на панелі + страхування від природних лих</p>
-                </div>
+                <h3 className="font-semibold text-lg mb-2">Повна гарантія</h3>
+                <p className="text-gray-600 text-sm">25 років на панелі + страхування від природних лих</p>
               </div>
 
-              <div className="flex items-start">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-black bg-opacity-10 rounded-brand flex items-center justify-center mr-4">
-                  <span className="text-xl sm:text-2xl">📱</span>
+              {/* Control Card */}
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="w-12 h-12 bg-brand-yellow bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1 text-sm sm:text-base">Повний контроль</h4>
-                  <p className="opacity-90 text-xs sm:text-sm">Детальна звітність по енергогенерації</p>
-                </div>
+                <h3 className="font-semibold text-lg mb-2">Повний контроль</h3>
+                <p className="text-gray-600 text-sm">Детальна звітність по енергогенерації</p>
               </div>
             </div>
 
-            <div className="bg-brand-black bg-opacity-10 p-4 rounded-brand">
-              <h4 className="font-semibold mb-2 text-sm sm:text-base">📞 Зв'яжіться зараз:</h4>
-              <div className="space-y-1 text-xs sm:text-sm">
-                <p>📱 +380 73 636 95 00 (Viber, Telegram)</p>
-                <p>📧 info@aitasolar.ua</p>
-                <p>🕐 Пн-Пт: 8:00-20:00, Сб-Нд: 10:00-18:00</p>
+            {/* Contact Information Block */}
+            <div className="mt-8 bg-brand-yellow bg-opacity-10 p-6 rounded-lg">
+              <h3 className="font-semibold text-lg mb-4">Зв'яжіться зараз:</h3>
+              <div className="space-y-3">
+                <p className="flex items-center text-gray-700">
+                  <svg className="w-5 h-5 mr-3 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <a href="tel:+380736369500" className="hover:text-brand-yellow transition-colors">
+                    +380 73 636 95 00 (Viber, Telegram)
+                  </a>
+                </p>
+                <p className="flex items-center text-gray-700">
+                  <svg className="w-5 h-5 mr-3 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  info@aitasolar.ua
+                </p>
+                <p className="flex items-center text-gray-700">
+                  <svg className="w-5 h-5 mr-3 text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Пн-Пт: 8:00-20:00, Сб-Нд: 10:00-18:00
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Simplified Contact Form - Mobile Optimized */}
-          <div className="bg-gray-50 p-6 sm:p-8 rounded-brand order-1 lg:order-2">
+          {/* Contact Form Section */}
+          <div className="bg-gray-50 p-6 sm:p-8 rounded-brand order-1 lg:order-2 lg:sticky lg:top-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
               <h3 className="text-xl sm:text-2xl font-semibold text-brand-black mb-2 sm:mb-0">
                 Безкоштовна консультація
@@ -183,15 +138,17 @@ const ContactForm = () => {
             <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               {/* Name Field */}
               <div>
-                <label htmlFor="name" className="block text-brand-black font-medium mb-2 text-sm sm:text-base">
+                <label 
+                  htmlFor="contactFullName" 
+                  className="block text-brand-black font-medium mb-2 text-sm sm:text-base"
+                >
                   Ім'я *
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
+                  id="contactFullName"
+                  name="fullName"
+                  autoComplete="name"
                   required
                   placeholder="Введіть ваше ім'я"
                   className="w-full px-4 py-4 rounded-brand border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent text-base"
@@ -200,15 +157,17 @@ const ContactForm = () => {
 
               {/* Phone Field */}
               <div>
-                <label htmlFor="phone" className="block text-brand-black font-medium mb-2 text-sm sm:text-base">
+                <label 
+                  htmlFor="contactPhone" 
+                  className="block text-brand-black font-medium mb-2 text-sm sm:text-base"
+                >
                   Телефон *
                 </label>
                 <input
                   type="tel"
-                  id="phone"
+                  id="contactPhone"
                   name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
+                  autoComplete="tel"
                   required
                   placeholder="+380 73 636 95 00"
                   className="w-full px-4 py-4 rounded-brand border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent text-base"
@@ -217,26 +176,39 @@ const ContactForm = () => {
 
               {/* Description Field */}
               <div>
-                <label htmlFor="description" className="block text-brand-black font-medium mb-2 text-sm sm:text-base">
+                <label 
+                  htmlFor="contactDescription" 
+                  className="block text-brand-black font-medium mb-2 text-sm sm:text-base"
+                >
                   Опис проекту
                 </label>
                 <textarea
-                  id="description"
+                  id="contactDescription"
                   name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
+                  autoComplete="off"
                   rows={4}
                   placeholder="Розкажіть про ваш проект: тип об'єкта, орієнтовна площа даху, місячний рахунок, терміни реалізації та інші важливі деталі..."
                   className="w-full px-4 py-4 rounded-brand border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent resize-none text-base"
                 />
               </div>
 
+              {state.errors && state.errors.length > 0 && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-brand">
+                  <p className="font-medium">Помилка при відправці форми:</p>
+                  <ul className="list-disc list-inside mt-2">
+                    {state.errors.map((error, index) => (
+                      <li key={index}>{error.message}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <button
                 type="submit"
-                disabled={isLoading || !formData.name || !formData.phone}
+                disabled={state.submitting}
                 className="w-full bg-brand-yellow hover:brand-gradient-hover text-brand-black py-5 rounded-brand font-semibold transition-all hover:shadow-brand-hover disabled:opacity-50 disabled:cursor-not-allowed text-lg touch-manipulation"
               >
-                {isLoading ? (
+                {state.submitting ? (
                   <span className="flex items-center justify-center">
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -248,43 +220,7 @@ const ContactForm = () => {
                   '🚀 Отримати консультацію безкоштовно'
                 )}
               </button>
-
-              <div className="bg-blue-50 p-4 rounded-brand border border-blue-200">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 mr-3">
-                    <span className="text-blue-600 text-lg">🔒</span>
-                  </div>
-                  <div className="text-xs sm:text-sm text-blue-800">
-                    <p className="font-medium mb-1">Ваші дані під захистом</p>
-                    <p>Ми не передаємо персональну інформацію третім особам і використовуємо її виключно для зв'язку з вами.</p>
-                  </div>
-                </div>
-              </div>
             </form>
-          </div>
-        </div>
-
-        {/* Trust Indicators - Mobile Optimized */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-brand">
-            <div className="text-xl sm:text-2xl mb-2">⚡</div>
-            <div className="text-base sm:text-lg font-bold text-brand-black mb-1">15 хв</div>
-            <div className="text-gray-600 text-xs sm:text-sm">Час відповіді</div>
-          </div>
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-brand">
-            <div className="text-xl sm:text-2xl mb-2">🎯</div>
-            <div className="text-base sm:text-lg font-bold text-brand-black mb-1">100%</div>
-            <div className="text-gray-600 text-xs sm:text-sm">Точність розрахунків</div>
-          </div>
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-brand">
-            <div className="text-xl sm:text-2xl mb-2">🏆</div>
-            <div className="text-base sm:text-lg font-bold text-brand-black mb-1">500+</div>
-            <div className="text-gray-600 text-xs sm:text-sm">Реалізованих проектів</div>
-          </div>
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-brand">
-            <div className="text-xl sm:text-2xl mb-2">💝</div>
-            <div className="text-base sm:text-lg font-bold text-brand-black mb-1">0 грн</div>
-            <div className="text-gray-600 text-xs sm:text-sm">Вартість консультації</div>
           </div>
         </div>
       </div>
