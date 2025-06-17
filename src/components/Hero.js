@@ -61,15 +61,15 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16">
           <button 
             onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-            className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg shadow-lg transition-all px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base transform hover:-translate-y-1 hover:shadow-xl will-change-transform touch-manipulation"
+            className="bg-brand-yellow hover:bg-yellow-600 text-brand-black font-semibold rounded-lg shadow-lg transition-all px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base transform hover:-translate-y-1 hover:shadow-xl will-change-transform touch-manipulation"
           >
-            🌟 Отримати консультацію
+            Отримати консультацію
           </button>
           <button 
             onClick={() => document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' })}
-            className="border-2 border-yellow-500 text-yellow-600 hover:text-white font-medium rounded-lg hover:bg-yellow-500 transition-all px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base hover:shadow-lg will-change-transform touch-manipulation"
+            className="bg-brand-black hover:bg-gray-900 text-white font-semibold rounded-lg shadow-lg transition-all px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base transform hover:-translate-y-1 hover:shadow-xl will-change-transform touch-manipulation"
           >
-            📊 Розрахувати вартість
+            Розрахувати вартість
           </button>
         </div>
 
