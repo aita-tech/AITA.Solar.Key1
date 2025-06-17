@@ -189,29 +189,30 @@ export default function MobileNavToggle() {
 
           {/* Contact section */}
           <div className="mt-auto pt-6 border-t border-gray-200">
-            <div className="mb-4">
-              <motion.a 
-                href="tel:+380736369500"
-                className="flex items-center text-green-700 hover:text-green-500 font-medium transition-colors p-2 rounded-lg hover:bg-green-50"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+            <div className="mb-4 flex flex-col gap-3">
+              <a 
+                href="tel:+380736369500" 
+                className="!text-decoration-none flex items-center gap-2 px-4 py-3 bg-yellow-50 hover:bg-yellow-100 text-brand-black font-medium rounded-lg transition-all hover:!text-decoration-underline focus:!text-decoration-underline shadow-sm"
               >
-                📞 +380 73 636 95 00
-              </motion.a>
+                <span className="text-xl">📞</span>
+                +380 73 636 95 00
+              </a>
+              <a
+                href="https://t.me/aitasolar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="!text-decoration-none flex items-center gap-2 px-4 py-3 bg-yellow-50 hover:bg-yellow-100 text-brand-black font-medium rounded-lg transition-all hover:!text-decoration-underline focus:!text-decoration-underline shadow-sm"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9.036 16.569l-.398 3.934c.57 0 .816-.244 1.113-.54l2.668-2.56 5.528 4.04c1.012.558 1.73.264 1.984-.94l3.6-16.84c.328-1.56-.567-2.17-1.58-1.8L2.36 9.47c-1.54.6-1.52 1.46-.264 1.85l4.6 1.44 10.68-6.74c.5-.32.96-.14.58.2"/></svg>
+                Telegram
+              </a>
             </div>
-            
-            <motion.button
-              onClick={() => handleNavigationClick('contact')}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors shadow-lg"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <a
+              href="#contact"
+              className="!text-decoration-none block w-full text-center bg-brand-yellow hover:bg-yellow-400 text-brand-black font-semibold rounded-lg py-4 transition-all hover:!text-decoration-underline focus:!text-decoration-underline mt-2"
             >
               Отримати консультацію
-            </motion.button>
-            
-            <p className="text-sm text-gray-500 text-center mt-3">
-              ☀️ Працюємо по всій Україні
-            </p>
+            </a>
           </div>
         </div>
       </motion.nav>

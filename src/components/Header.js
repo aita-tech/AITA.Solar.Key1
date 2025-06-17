@@ -66,7 +66,7 @@ const Header = () => {
     { label: 'Проблема та рішення', id: 'problem-solution' },
     { label: 'Як це працює', id: 'how-it-works' },
     { label: 'Калькулятор', id: 'calculator' },
-    { label: 'Сонячні панелі', id: 'solar-panels' },
+    { label: 'Обладнання', id: 'solar-panels' },
     { label: 'FAQ', id: 'faq' },
     { label: 'Відгуки', id: 'testimonials' },
     { label: 'Контакти', id: 'contact' },
@@ -125,10 +125,10 @@ const Header = () => {
             <div className="flex items-center gap-x-2">
               <a
                 href="tel:+380736369500"
-                className="flex items-center text-brand-black hover:text-brand-yellow transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-yellow rounded-lg px-3 py-2 font-medium whitespace-nowrap"
+                className="flex items-center text-brand-black hover:text-brand-yellow transition-colors"
               >
-                <svg className="h-5 w-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <span className="whitespace-nowrap">+380 73 636 95 00</span>
               </a>
@@ -246,14 +246,13 @@ const Header = () => {
               
               <div className="pt-4 mt-4 border-t border-gray-200">
                 <a 
-                  href="tel:+380736369500"
-                  className="flex items-center px-3 py-3 text-base font-medium text-brand-black bg-yellow-50 hover:text-brand-yellow hover:bg-yellow-100 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-700"
-                  onClick={() => setIsMenuOpen(false)}
+                  href="tel:+380736369500" 
+                  className="flex items-center text-brand-black hover:text-brand-yellow transition-colors"
                 >
-                  <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +380 73 636 95 00
+                  <span className="whitespace-nowrap">+380 73 636 95 00</span>
                 </a>
                 <a 
                   href="https://t.me/Aita_Solar"
