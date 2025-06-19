@@ -1,26 +1,49 @@
-import React from 'react';
-import { useForm } from '@formspree/react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ContactForm = () => {
-  const [state, handleSubmit] = useForm("mrbklgvj");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const handleWebhookSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://hook.eu2.make.com/muy5nud027nvuavdxqvf74lcrd2mxgs1", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully to Make.com");
+        navigate('/thank-you');
+      } else {
+        throw new Error(`Form submission failed with status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError("Виникла помилка при відправці. Спробуйте ще раз.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Debug logs for form state
   React.useEffect(() => {
     console.log('Form state:', {
-      submitting: state.submitting,
-      succeeded: state.succeeded,
-      errors: state.errors
+      submitting: isSubmitting,
+      error: error
     });
-  }, [state]);
-
-  React.useEffect(() => {
-    if (state.succeeded) {
-      console.log('Form submission succeeded, navigating to thank you page');
-      navigate('/thank-you');
-    }
-  }, [state.succeeded, navigate]);
+  }, [isSubmitting, error]);
 
   return (
     <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
@@ -135,7 +158,7 @@ const ContactForm = () => {
               </div>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+            <form onSubmit={handleWebhookSubmit} className="space-y-5 sm:space-y-6">
               {/* Name Field */}
               <div>
                 <label 
@@ -192,23 +215,19 @@ const ContactForm = () => {
                 />
               </div>
 
-              {state.errors && state.errors.length > 0 && (
+              {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-brand">
                   <p className="font-medium">Помилка при відправці форми:</p>
-                  <ul className="list-disc list-inside mt-2">
-                    {state.errors.map((error, index) => (
-                      <li key={index}>{error.message}</li>
-                    ))}
-                  </ul>
+                  <p>{error}</p>
                 </div>
               )}
 
               <button
                 type="submit"
-                disabled={state.submitting}
+                disabled={isSubmitting}
                 className="w-full bg-brand-yellow hover:brand-gradient-hover text-brand-black py-5 rounded-brand font-semibold transition-all hover:shadow-brand-hover disabled:opacity-50 disabled:cursor-not-allowed text-lg touch-manipulation"
               >
-                {state.submitting ? (
+                {isSubmitting ? (
                   <span className="flex items-center justify-center">
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
