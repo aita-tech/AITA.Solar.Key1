@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from '@formspree/react';
 import { useNavigate } from 'react-router-dom';
 
 const ContactForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [formspreeState, handleFormspreeSubmit] = useForm("mrbklgvj");
   const navigate = useNavigate();
 
-  const handleWebhookSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
+  // Debug logs for form state
+  React.useEffect(() => {
+    console.log('Form state:', {
+      submitting: formspreeState.submitting,
+      succeeded: formspreeState.succeeded,
+      errors: formspreeState.errors
+    });
+  }, [formspreeState]);
 
+  React.useEffect(() => {
+    if (formspreeState.succeeded) {
+      // --- ANALYTICS EVENTS ---
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead' });
+      if (window.fbq) { window.fbq('track', 'Lead'); }
+
+      // --- REDIRECT ---
+      navigate('/thank-you');
+    }
+  }, [formspreeState.succeeded, navigate]);
+
+  const handleCombinedSubmit = async (event) => {
+    event.preventDefault();
+
+    // --- TRIGGER FORMSPREE SUBMISSION ---
+    handleFormspreeSubmit(event);
+
+    // --- MAKE.COM WEBHOOK SUBMISSION ---
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -24,26 +47,14 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
-        console.log("Form submitted successfully to Make.com");
-        navigate('/thank-you');
+        console.log("Data sent to Make.com webhook.");
       } else {
-        throw new Error(`Form submission failed with status: ${response.status}`);
+        console.error(`Make.com webhook submission failed with status: ${response.status}`);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setError("Виникла помилка при відправці. Спробуйте ще раз.");
-    } finally {
-      setIsSubmitting(false);
+      console.error("Make.com webhook submission failed:", error);
     }
   };
-
-  // Debug logs for form state
-  React.useEffect(() => {
-    console.log('Form state:', {
-      submitting: isSubmitting,
-      error: error
-    });
-  }, [isSubmitting, error]);
 
   return (
     <section id="contact" className="relative py-12 sm:py-20 overflow-hidden">
@@ -158,7 +169,7 @@ const ContactForm = () => {
               </div>
             </div>
             
-            <form onSubmit={handleWebhookSubmit} className="space-y-5 sm:space-y-6">
+            <form onSubmit={handleCombinedSubmit} className="space-y-5 sm:space-y-6">
               {/* Name Field */}
               <div>
                 <label 
@@ -215,19 +226,23 @@ const ContactForm = () => {
                 />
               </div>
 
-              {error && (
+              {formspreeState.errors && formspreeState.errors.length > 0 && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-brand">
                   <p className="font-medium">Помилка при відправці форми:</p>
-                  <p>{error}</p>
+                  <ul className="list-disc list-inside mt-2">
+                    {formspreeState.errors.map((error, index) => (
+                      <li key={index}>{error.message}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={formspreeState.submitting}
                 className="w-full bg-brand-yellow hover:brand-gradient-hover text-brand-black py-5 rounded-brand font-semibold transition-all hover:shadow-brand-hover disabled:opacity-50 disabled:cursor-not-allowed text-lg touch-manipulation"
               >
-                {isSubmitting ? (
+                {formspreeState.submitting ? (
                   <span className="flex items-center justify-center">
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
